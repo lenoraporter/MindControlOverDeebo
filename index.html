@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic Tac Toe Game</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Itim" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+
+        <header>
+            <center><h1 id="head">Choose A Player<br/><span id="secondary-blue">X</span> or <span id="primary-blue">O</span></h1></center>
+            <center></center><h2 id="result"></h2></center>
+            <center><button id="new-game">Play Again</button></center>
+        </header>
+
+
+        <section id="game">
+            <div id="playground">
+                <div id="score">
+                    <ul>                           
+                        <li class="columns" style="color: #39BCD4;">
+                            <h3>O</h3>
+                            <h4>4 wins</h4>
+                        </li>
+                        <li class="columns" style="color: #3989D4;">
+                            <h3>X</h3>
+                            <h4>2 wins</h4>
+                        </li>
+                        <li class="columns" style="color: #A4B5B8;">
+                            <img src="Scale_98433.svg" class="svg" />
+                            <h4>2 draws</h4>
+                        </li>
+                    </ul>
+                    </div>
+                <div class="wrapper">
+                    <div id="tic-tac-toe">
+                        <canvas class="box" id="canvas1" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas2" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas3" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas4" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas5" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas6" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas7" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas8" width="100px" height="100px"></canvas>
+                        <canvas class="box" id="canvas9" width="100px" height="100px"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="rules">
+                <h2>Rules</h2>
+
+                <p>1. Be nice and take turns.</p>
+                <p>2. Know how to play or else.</p>
+                <p>3. Tap "Play Again" if you have an unfair advantage.</p>
+            </div> -->
+        </section>
+        <script src="script.js"></script>
+    </body>
+</html>
