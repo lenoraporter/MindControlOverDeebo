@@ -67,5 +67,16 @@ window.onload = function() {
         symbol[next] = aiDeebo;
     }
 
+    //Part 3. Check for the winner
+    function winnerCheck(symbol, player) {
+        for(var j=0; j<winner.length; j++) {
+            if((symbol[winner[j][0]] == player) && 
+            (symbol[winner[j][1]] == player ) &&
+            (symbol[winner[j][2]] == player )) {
+                return true;
+            }
+        }
+        return false;
+    };
 
 }
