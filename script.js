@@ -44,7 +44,7 @@ window.onload = function() {
         ctx.beginPath();
         ctx.moveTo(15, 15);
         ctx.lineTo(85, 85);
-        ctx.moveTo(15, 85);
+        ctx.moveTo(85, 15);
         ctx.lineTo(15, 85);
         ctx.lineWidth = 10;
         ctx.strokeStyle = "white";
