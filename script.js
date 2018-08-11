@@ -46,6 +46,7 @@ window.onload = function() {
         ctx.lineTo(85, 85);
         ctx.moveTo(85, 15);
         ctx.lineTo(15, 85);
+        ctx.lineCap = "round";
         ctx.lineWidth = 10;
         ctx.strokeStyle = "white";
         ctx.stroke();
@@ -114,5 +115,17 @@ window.onload = function() {
         else {
             alert("Don't try to cheat. I'll take more than your chain! Click another box."); 
         }
+    }
+    //Step 5. Find empty boxes for Deebo to use
+    function emptyBoxes(newSymbol) {
+        var j = 0;
+        var empty = [];
+        for(var i=0; i<newSymbol.length; i++) {
+            if(newSymbol[i] !== 'X' && newSymbol[i] !== 'O') {
+                empty[j] = i;
+                j++;
+            }
+        }
+        return empty;
     }
 };
