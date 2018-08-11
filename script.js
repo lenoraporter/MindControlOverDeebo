@@ -83,7 +83,27 @@ window.onload = function() {
      function boxClick(numId) {
         box = document.getElementById(numId);
         ctx = box.getContext("2d");
-        num = parseInt(numId.charAt(numId.length - 1 ));
+        // num = parseInt(numId.charAt(numId.length - 1 ));
+        switch(numId) {
+			case "canvas1": num = 1;
+							break;
+			case "canvas2": num = 2;
+							break;
+			case "canvas3": num = 3;
+							break;
+			case "canvas4": num = 4;
+							break;
+			case "canvas5": num = 5;
+							break;
+			case "canvas6": num = 6;
+							break;
+			case "canvas7": num = 7;
+							break;
+			case "canvas8": num = 8;
+							break;
+			case "canvas9": num = 9;
+							break;
+		}
      
 
         if(filled[num-1] === false) {
@@ -130,9 +150,9 @@ window.onload = function() {
     }
 
     //Part 6. Deebo plays - Minimax Algorithm
-    function playAI() {
-        var nextMove = miniMax(symbol,ai);
-        var nextId = nextMove.id + 1;
+    function playAIDeebo() {
+        var nextMove = miniMax(symbol,aiDeebo);
+        var nextId = "canvas" + (nextMove.id + 1);
         box = document.getElementById(nextId);
         ctx = box.getContext("2d");
         if(gameOver === false) {
@@ -155,5 +175,91 @@ window.onload = function() {
             alert("You trying to get that chain taken again? Click the Play Again button Young Blood.");
         }
     }
-    
+
+    //Minimax function 
+	//For this example/explanation, AI - X, human - O
+	//symbol = ['X','','O','X','','O','','X','X'], 'O' -> human
+	function miniMax(newSymbol, player) {
+		var empty = [];
+		empty = emptyBoxes(newSymbol); //[]
+		
+		if(winnerCheck(newSymbol,human)) {
+			return { score: -10 }; //human wins
+		}
+		else if(winnerCheck(newSymbol,aiDeebo)) {
+			return { score: 10 }; //AI wins
+		}
+		else if(empty.length === 0) {
+			if(winnerCheck(newSymbol,human)) {
+				return { score: -10 };
+			}
+			else if(winnerCheck(newSymbol,aiDeebo)) {
+				return { score : 10 };
+			}
+			return { score: 0 }; //game is draw
+		}
+
+//if its not a terminal state
+		//possible moves- their indices and score values
+		var posMoves = []; 
+		//[4] - Example
+		for(var i=0; i<empty.length; i++) {
+			//current move - index of current move,score
+			var curMove = {};
+			//generate the new board with the current move
+			curMove.id = empty[i]; //4
+			newSymbol[empty[i]] = player; //AI
+			
+			if(player === aiDeebo) {
+				//result = [{id:4,score:-10}], 
+				//curMove = {id:1,score:-10}
+				result = miniMax(newSymbol, human); //index and score
+				curMove.score = result.score; //10
+			}
+			else {
+				//result = [{id:6, score:10}]
+				//curMove = {id:6, score:10}
+				result = miniMax(newSymbol, aiDeebo);
+				curMove.score = result.score; //-10
+				//level 2 move 1 curMove = {id: 6, score: 10}
+				//level 3 move 1 -> posMoves = [{id:4,score:10}]
+				//level 2 move 1 -> posMoves = [{id:6, score:10}]
+			}
+			
+			//level 1 move 1 -> posMoves = [{id:4,score:-10},{id:6, score:10}]
+			//level 0 -> posMoves = [{id:4,score:10},{id:6,score:10},{id:1,score:-10}]
+			//empty:[1,4,6]
+			newSymbol[empty[i]] = '';
+			
+			posMoves.push(curMove); //[{id: 1, score: -10}]
+			
+		}
+		
+		//Calculate score of intermediate states - best move + score with respect to that player + return statement 
+		var bestMove;
+		//AI - max player (always) -> choose maximum value, human - min player -> choose minimum value
+		
+		if(player === aiDeebo) {
+			//posMoves = [{id:4,score:10},{id:6,score:10},{id:1,score:-10}]
+			var highestScore = -1000;
+			for(var j=0; j<posMoves.length;j++) {
+				if(posMoves[j].score > highestScore) {
+					highestScore = posMoves[j].score;
+					bestMove = j; //0
+				}
+			}
+		}
+		//posMoves = [{id:4,score:-10},{id:6, score:10}]
+		else {
+			var lowestScore = 1000;
+			for(var j=0; j<posMoves.length;j++) {
+				if(posMoves[j].score < lowestScore) {
+					lowestScore = posMoves[j].score;
+					bestMove = j;
+				}
+			}
+		}
+		return posMoves[bestMove]; 
+        //posMoves[0] = {id:4,score:10}
+    }
 };
