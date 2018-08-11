@@ -116,7 +116,7 @@ window.onload = function() {
             alert("Don't try to cheat. I'll take more than your chain! Click another box."); 
         }
     }
-    //Step 5. Find empty boxes for Deebo to use
+    //Part 5. Find empty boxes for Deebo to use
     function emptyBoxes(newSymbol) {
         var j = 0;
         var empty = [];
@@ -128,4 +128,32 @@ window.onload = function() {
         }
         return empty;
     }
+
+    //Part 6. Deebo plays - Minimax Algorithm
+    function playAI() {
+        var nextMove = miniMax(symbol,ai);
+        var nextId = nextMove.id + 1;
+        box = document.getElementById(nextId);
+        ctx = box.getContext("2d");
+        if(gameOver === false) {
+            if(turn%2 === 0) {
+                drawO(nextMove.id);
+                turn++
+                filled[nextMove.id] = true;
+
+                if(winnerCheck(symbol, symbol[nextMove.id]) === true) {
+                    document.getElementById("result").innerText = "Gimme your chain!";
+                    gameOver = true;
+                }
+                if(turn > 9 && gameOver !== true) {
+                    document.getElementById("result").innerText = "I don't care if you won! I'm still taking your chain!";
+
+                }
+            }
+        }
+        else {
+            alert("You trying to get that chain taken again? Click the Play Again button Young Blood.");
+        }
+    }
+    
 };
