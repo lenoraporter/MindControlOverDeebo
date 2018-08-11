@@ -37,4 +37,35 @@ window.onload = function() {
     document.getElementById("tic-tac-toe").addEventListener("click", function(e) {
         boxClick(e.target.id);
     });
+
+    //Part 2: Draw X and O
+    function drawX() {
+        box.style.backgroundColor = "#fb5181";
+        ctx.beginPath();
+        ctx.moveTo(15, 15);
+        ctx.lineTo(85, 85);
+        ctx.moveTo(15, 85);
+        ctx.lineTo(15, 85);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "white";
+        ctx.stroke();
+        ctx.closePath();
+
+        symbol[num-1] = human;
+    }
+    
+    //Drawing O
+    function drawO(next) {
+        box.style.backgroundColor = "#93f273";
+        ctx.beginPath();
+        ctx.arc(50,50,35,0,2*Math.PI);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "white";
+        ctx.stroke();
+        ctx.closePath();
+       
+        symbol[next] = aiDeebo;
+    }
+
+
 }
