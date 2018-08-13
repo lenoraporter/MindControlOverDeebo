@@ -114,7 +114,7 @@ window.onload = function() {
                     filled[num-1] = true;
 
                     if(winnerCheck(symbol,symbol[num -1]) === true) {
-                        document.getElementById("result").innerText = "I don't care if you won! I'm still taking your chain!";
+                        document.getElementById("result").innerText = "I got knocked the f@%& out!";
                         gameOver = true;
                     }
 
@@ -166,7 +166,7 @@ window.onload = function() {
                     gameOver = true;
                 }
                 if(turn > 9 && gameOver !== true) {
-                    document.getElementById("result").innerText = "I don't care if you won! I'm still taking your chain!";
+                    document.getElementById("result").innerText = "I got knocked the f@%& out!";
 
                 }
             }
